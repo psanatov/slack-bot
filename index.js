@@ -18,19 +18,27 @@ var web = new WebClient(process.env.SLACK_API_TOKEN);
 // Port
 const port = 1337;
 
-// Random emoji array
-const emojisController = require('./controllers/emojis');
-const randomEmoji = emojisController.getEmoji(); 
+// REST stuff
+var RestClient = require('node-rest-client').Client;
+var restClient = new RestClient();
 
 // Incoming message handler
 rtm.on(RTM_EVENTS.MESSAGE, function handleRtmMessage(message) {
-  console.log('Message:', message); // Optional logging
-
   if (message["type"] === "message" && message["user"] !== rtm.activeUserId) {
-    // Here goes neuro part
-    web.reactions.add(randomEmoji, {
-      channel: message["channel"],
-      timestamp: message["ts"]
+    
+    var args = {
+      data: { text: message["text"] },
+      headers: { "Content-Type": "application/json" }
+    };
+    
+    restClient.registerMethod("postMethod", "http://eba.cloud:8080/getEmoji", "POST");
+    restClient.methods.postMethod(args, function (data, response) {
+      if(data.emoji.length > 0) {
+        web.reactions.add(data.emoji, {
+          channel: message["channel"],
+          timestamp: message["ts"]
+        });
+      }
     });
 
     // Uncomment this later
