@@ -31,7 +31,7 @@ rtm.on(RTM_EVENTS.MESSAGE, function handleRtmMessage(message) {
       headers: { "Content-Type": "application/json" }
     };
     
-    restClient.registerMethod("postMethod", "http://eba.cloud:8080/getEmoji", "POST");
+    restClient.registerMethod("postMethod", process.env.CUSTOM_API_URL, "POST");
     restClient.methods.postMethod(args, function (data, response) {
       if(data.emoji.length > 0) {
         web.reactions.add(data.emoji, {
@@ -41,7 +41,7 @@ rtm.on(RTM_EVENTS.MESSAGE, function handleRtmMessage(message) {
       }
     });
 
-    // Uncomment this later
+    // In case you'd like to send a message, not the emoji itself
     //rtm.sendMessage(message["text"], message["channel"]);
   }
 });

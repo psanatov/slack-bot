@@ -1,9 +1,7 @@
 # Slack bot demo using the RTM API
 
-[![Run with Postverta badge](http://postverta.io/badge.svg)](http://postverta.io/direct/postverta/slack-bot-rtm)
-
 This simple app demonstrates how to write a simple `Slack` bot using `Slack`'s
-[Real-Time Messaging (RTM) API](https://api.slack.com/rtm) and its official
+[Real-Time Messaging (RTM) API](https://api.slack.com/rtm), [Web API](https://api.slack.com/web) and its official
 [node SDK](https://slackapi.github.io/node-slack-sdk/bots).
 
 ## Install the bot
@@ -23,7 +21,7 @@ Install the app with your team.
 4. Go to your `Slack`, create a test channel, and invite your bot user to that
    channel.
 
-That's it! Now you can try saying something in the test channel. The bot will
+That's it! Now you can try saying something in the `#channel`. The bot will
 mirror whatever you said back to the channel.
 
 ## How does it work?
@@ -35,6 +33,6 @@ documentation](https://slackapi.github.io/node-slack-sdk/bots).
 
 ## Next steps
 
-There are a lot more you can do with the RTM API and the SDK! Try to write a
+There are a lot more you can do with the RTM API, Web API and the SDK! Try to write a
 more interesting message handler, or go to the documentation and discover other
 events you can register.
